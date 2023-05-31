@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	var str="010-1234-5678";
+	var confirm = str.match("010-1211-5678"); //문자열이 일치할 경우 현재 문자열을 리턴하는 함수, 불일치하면 null값 리턴
+	confirm = str.test("010-1234-5678");
+	confirm = str.test("/\d{3}-\d{4}-\d{4}/");
+	
+	if (confirm) {
+		alert('true');
+	}else{
+		alert('false');
+	}
+</script>
+</head>
+<body>
+
+</body>
+</html>

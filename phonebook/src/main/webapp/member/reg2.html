@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	var reg = new RegExp(/I Love You/); //출력값: /010-1234-5678/
+	var str = "010-1234-5678";
+	confirm = reg.test(reg);
+	/* if(confirm) alert('true'); */
+	
+	text = "I Love You";
+	result = text.match(/love/i); //i는 대소문자를 구분하지 않겠다는 옵션
+	result = text.match(/Yo/); //전체가 일치하지 않더라도 일치하는 부분만 있다면 출력
+	
+	result = reg.test(text); //I Love You 전체가 일치하므로 true 반환
+	result = reg.test("I Love Yo"); //일치하지 않으므로 false 반환
+	reg = /\d{3}-\d{4}-\d{4}/; //{숫자 세자리}-{숫자 네자리}-{숫자 네자리} 로 구성된 정규식
+	result = reg.test("010-1234-5678"); //정규식 표현과 일치하므로 true 반환
+	alert(result);
+</script>
+</head>
+<body>
+
+</body>
+</html>

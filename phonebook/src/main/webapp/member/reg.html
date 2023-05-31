@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	text = "Abcd@123";
+	//alert(/^A/.test(text)); // A로 시작합니까?
+	//alert(/\d{3}$/.test(text)); // 마지막 3문자가 숫자입니까?
+	//alert(/^[A-Z]/.test(text)); // 첫번째 문자가 대문자입니까?
+	//alert(/[A-Z0-9a-z]/.test("!")); //문자가 알파벳 또는 숫자입니까?
+	//alert(/[^A-Z]/.test("!")); //문자가 대문자가 아닙니까?
+	//alert(/@/g.test(text)); //골뱅이가 포함되어 있습니까?
+	alert(/\S*@\S*[.]\S*/.test("abc@dabcd.com")); //이메일 주소입니까?
+			
+</script>
+</head>
+<body>
+
+</body>
+</html>

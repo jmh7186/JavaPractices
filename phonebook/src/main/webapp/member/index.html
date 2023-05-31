@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	*{
+		margin: 0 auto;
+		padding: 0px;
+	}
+	header {
+		background-color: rgb(192, 192, 235);
+		height: 100px;
+		max-width: 1000px;
+		min-width: 1000px;
+		
+	}
+	nav {
+		background-color: rgb(213, 213, 238);
+		height: 100px;
+		text-align: center;
+		max-width: 1000px;
+		min-width: 1000px;
+	}
+	nav > ul {
+		padding-top: 20px;
+		list-style-type: none;
+		font-size: 20px;
+		display: inline-flex;
+	}
+	nav > ul > li {
+		border: 2px solid rgb(156, 156, 190);
+		width: 100px;
+		padding: 10px;
+	}
+	nav > ul> li:hover {
+		background-color:  rgb(156, 156, 190);
+	}
+	#middle {
+		justify-content: space-between;
+		display: flex;
+		max-width: 1000px;
+		min-width: 1000px;
+	}
+	aside {
+		background-color: rgb(225, 200, 255);
+		height: 700px;
+		width: 300px;
+	}
+	main{
+		background-color: rgb(202, 187, 238);
+		height: 700px;
+		width: 700px;
+	}
+</style>
+</head>
+<body>
+	<header></header>
+	<nav>
+		<ul>
+			<li onclick="pageChanger('memberLogin.html','main')">로그인</li>
+		</ul>
+	</nav>
+	<div id="middle">
+		<aside></aside>
+		<main></main>
+	</div>
+	<footer></footer>
+</body>
+<script>
+	function pageChanger(page, des) {
+		fetch(page)
+		.then(res => res.text())
+		.then(data => {
+			document.querySelector(des).innerHTML=data;
+		});
+	}
+</script>
+</html>

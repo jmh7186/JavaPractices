@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	//문자열.match(정규식 or 문자열), 문자열.replace(정규식 or 문자열), 문자열.split(정규식 or 문자열)
+	//정규식.test(문자열) 정규식.exec(문자열) - match와 비슷한 함수(정규식용 match)
+	
+	//정규식 표현)
+	// 정규식 = new RegExp(문자열);
+	// 정규식 = /010-1111-1111/
+	// 정규식 = /\d{3}-\d{4}-\d{4}/
+	// i는 대소문자를 구별하지 않는다는 옵션, g는 전체를 의미하는 옵션
+	text = "2023-05-26 00:00:00";
+	text = text.replace(/ 00:00:00$/,"");
+	alert(text);
+	
+	email = "abc@google.com";
+	reg = /\S*@\S*[.]\S*/;
+	alert(reg.test(email));	
+</script>
+</head>
+<body>
+
+</body>
+</html>

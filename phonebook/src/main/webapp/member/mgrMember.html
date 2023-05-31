@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="memberSearch.jsp" method="post">
+		검색할 아이디 : <input type="text" name="keyword" id="keyword"><br>
+		<input type="submit" value="검색">
+	</form>
+	<hr>
+	<form action="memberUpdate.jsp" method="post">
+		<b>* 필수 입력 / 비워 둘 시 변경하지 않음</b><br>
+		<b>주소는 하이픈(-) 입력 시 삭제됨</b><br>
+		* 수정할 아이디 : <input type="text" name="keyword"	id="keyword"><br>
+		새로운 아이디 : <input type="text" name="newid" id="newid"><br>
+		새로운 비밀번호 : <input type="password" name="newpwd" id="newpwd"><br>
+		새로운 연락처 : <input type="tel" name="newhp" id="newhp"><br>
+		새로운 주소 : <input type="text" name="newadr" id="newadr"><br>
+		<input type="submit" value="수정">
+	</form>
+	<hr>
+	<form action="memberDelete.jsp" method="post">
+		삭제할 아이디 : <input type="text" name="keyword" id="keyword"><br>
+		<input type="submit" value="삭제">
+	</form>
+	<hr>
+	<button onclick="pageChanger('memberLogin.html','main')">돌아가기</button>
+</body>
+</html>

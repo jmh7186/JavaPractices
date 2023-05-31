@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+	ul {
+		list-style-type: none;
+	}
+	li {
+		margin: 10px;
+	}
+</style>
+<script>
+	pcon = false;
+	function confirm() {
+		//공란확인
+		if (document.querySelector("#id").value=="") {
+			alert('아이디 칸이 비어있습니다.')
+			document.querySelector("#id").focus();
+			return false;
+		}
+		if (document.querySelector("#id").value.length < 5 || document.querySelector("#id").value.length > 12) {
+			alert('아이디는 5자 이상 12자 이하여야 합니다.')
+			document.querySelector("#id").focus();
+			return false;
+		}
+		if (document.querySelector("#password").value=="") {
+			alert('비밀번호 칸이 비어있습니다.')
+			document.querySelector("#password").focus();
+			return false;
+		}
+		if (document.querySelector("#tel").value=="") {
+			alert('전화번호 칸이 비어있습니다.')
+			document.querySelector("#tel").focus();
+			return false;
+		}
+		if (document.querySelector("#address").value=="") {
+			alert('주소 칸이 비어있습니다.')
+			document.querySelector("#address").focus();
+			return false;
+		}
+		if (!(pcon)) {
+			alert('비밀번호 검증을 하지 않았습니다.')
+			document.querySelector("#repassword").focus();
+			return false;
+		}
+		return true;
+	}
+	function confirmpwd() {
+		if (document.querySelector("#password").value.length < 8 || document.querySelector("#password").value.length > 20) {
+			alert('비밀번호는 8자 이상 20자 이하여야 합니다.')
+			document.querySelector("#password").focus();
+			return;
+		}
+		if (document.querySelector("#repassword").value!=document.querySelector("#password").value) {
+			alert('비밀번호 확인이 일치하지 않습니다.')
+			document.querySelector("#repassword").focus();
+			return;
+		}else {
+			alert('비밀번호가 일치합니다.');
+			document.querySelector("#pcon").value="일치함";
+			document.querySelector("#pcon").disabled='disabled';
+			document.querySelector("#repassword").disabled='disabled';
+			document.querySelector("#password").disabled='disabled';
+			document.querySelector("#tel").focus();
+			pcon = true;
+		}
+	}
+</script>
+<body>
+	<form action="m.jsp" id="signup" onsubmit="return confirm()" method="post">
+		<ul>
+			<li><h2>회원가입</h2></li>
+			<li>아이디: <input type="text" id="id" name="id"></li>
+			<li>비밀번호: <input type="password" id="password" name="password"></li>
+			<li>
+				비밀번호 확인: <input type="password" id="repassword" name="repassword">
+				<input type="button" id="pcon" name="pcon" value="비밀번호 검증" onclick="confirmpwd()">
+			</li>
+			<li>전화번호: <input type="tel" id="tel" name="tel"></li>
+			<li>주소: <input type="text" id="address" name="address"></li>
+			<li>
+				<input type="submit" id="submit" name="submit" value="회원가입">
+				<input type="reset" id="reset" name="reset" value="취소" onclick="location.reload()">
+			</li>
+		</ul>
+	</form>
+</body>
+</html>

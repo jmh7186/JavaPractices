@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign up</title>
+<style>
+ul {
+	list-style-type: none;
+}
+
+li {
+	padding: 5px;
+}
+</style>
+</head>
+
+<body>
+	<form action="memberInsert.jsp" method="post">
+		<ul>
+			<li><h1>Sign up</h1></li>
+			<li><b>* 표시는 필수 입력</b></li>
+			<li>* ID : <input type="text" name="id" id="id"></li>
+			<li>* PASSWORD : <input type="password" name="pwd" id="pwd"></li>
+			<li>* HP : <input type="tel" name="hp" id="hp"></li>
+			<li>ADDRESS <input type="text" name="adr" id="adr" size="30"></li>
+			<li><input type="submit" name="submit" id="submit" value="가입">
+				<input type="reset" name="reset" id="reset" value="취소"></li>
+		</ul>
+	</form>
+	<button onclick="pageChanger('memberLogin.html','main')">돌아가기</button>
+</body>
+
+</html>

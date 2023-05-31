@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1.0">
+  <zoom_level>14</zoom_level>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>238</x>
+      <y>294</y>
+      <w>84</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>고객</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>378</x>
+      <y>336</y>
+      <w>168</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>회원가입
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>308</x>
+      <y>336</y>
+      <w>98</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;50.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>364</x>
+      <y>210</y>
+      <w>196</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>String id,
+String password,
+String hp,
+String address
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
