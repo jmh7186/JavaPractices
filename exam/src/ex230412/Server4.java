@@ -1,0 +1,38 @@
+package ex230412;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.OutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class Server4 {
+
+	public static void main(String[] args){
+		try {
+		ServerSocket server=new ServerSocket(5555);
+		System.out.println("서버프로그램 시작");
+		Socket client=server.accept();//대기
+		System.out.println(client.getInetAddress()+"클라이언트가 접속하였습니다.");
+		//데이터 전송(연결통로인 stream이용)
+		InputStream in=client.getInputStream();
+		OutputStream out=client.getOutputStream();
+		
+		//서버->클라이언트로 데이터 전송
+		out.write("hello client".getBytes());
+		out.flush();
+		
+		//클라이언->서버에게 보내온 메시지 처리
+		ObjectInputStream objin=new ObjectInputStream(in);
+		Member m=(Member)objin.readObject();
+		System.out.println("클라이언트에서 온 메시지:");
+		System.out.println(m.getId());
+		System.out.println(m.getPassword());
+		client.close();
+		server.close();
+		Thread.sleep(1000);
+		}catch(Exception e) {e.printStackTrace(); }
+	}
+
+}

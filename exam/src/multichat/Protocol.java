@@ -1,0 +1,119 @@
+package multichat;
+
+import java.io.Serializable;
+
+public class Protocol implements Serializable {
+
+	public static final int PT_EXIT = -1; // ¡æ∑·
+	public static final int PT_REQ_LOGIN = 1; // ∑Œ±◊¿Œ ø‰√ª
+	public static final int PT_RES_LOGIN = 2; // ¿Œ¡ıø‰√ª
+	public static final int PT_LOGIN_RESULT = 3; // ¿Œ¡ı∞·∞˙
+	public static final int PT_LOGIN_SUCCED = 31; // ¿Œ¡ıº∫∞¯
+	public static final int PT_LOGIN_FAIL = 30; // ¿Œ¡ıΩ«∆–
+	public static final int PT_CHAT = 4;		//√§∆√
+
+	protected int protocolType;
+
+	private byte[] packet;
+
+	public Protocol() {
+		this(0);
+	}
+
+	public Protocol(int protocolType) {
+
+		this.protocolType = protocolType;
+		getPacket(protocolType);
+	}
+
+	public byte[] getPacket(int protocolType) {
+
+		if (packet == null) {
+
+			switch (protocolType) {
+
+			case PT_REQ_LOGIN:
+				packet = new byte[1];
+				break;
+			case PT_RES_LOGIN:
+				packet = new byte[21];
+				break;
+			case PT_LOGIN_RESULT:
+				packet = new byte[2];
+				break;
+			case PT_EXIT:
+				packet = new byte[1];
+				break;
+			case PT_CHAT:
+				packet = new byte[1];
+				break;
+			default: 
+				packet = new byte[1024];
+				break;
+			}
+		}
+
+		packet[0] = (byte) protocolType; // packet Î∞?????∏Î∞∞????? Ï≤´Î?Ïß? Î∞©Ï?? ???Î°???ÏΩ?????? ??????Î•? ????????? ?????????.
+		return packet;
+	}
+
+	// Î°?Í∑??????? ??±Í??/????????? Í≤∞Í≥ºÍ∞??? ???Î°???ÏΩ?Î°? Î∂???? Ï∂?Ï∂??????? Î¨∏Ï????¥Î??
+	// Î¶¨Ì??
+	public String getLoginResult() {
+		// String??? ?????? ?????????Î•? ?????? : String(byte[] bytes, int offset, int
+		// length)
+		return new String(packet, LEN_PROTOCOL_TYPE, LEN_LOGIN_RESULT).trim();
+	}
+
+	// String okÎ•? byte[] Î°? Îß????????? packet??? ???Î°???ÏΩ? ????? Î∞?Î°? ??????
+	// Ï∂?????????.
+	public void setLoginResult(String ok) {
+		// arraycopy(Object src, int srcPos, Object dest, int destPos, int length)
+		System.arraycopy(ok.trim().getBytes(), 0, packet, LEN_PROTOCOL_TYPE, ok.trim().getBytes().length);
+	}
+
+	public void setProtocolType(int protocolType) {
+		this.protocolType = protocolType;
+	}
+
+	public int getProtocolType() {
+		return protocolType;
+	}
+
+	public byte[] getPacket() {
+		return packet;
+	}
+
+	// Default ?????????Î°? ????????? ??? Protocol ???????????? packet ????????Î•?
+	// Î∞?Íæ∏Í?? ?????? Î©??????
+	public void setPacket(int pt, byte[] buf) {
+		packet = null;
+		packet = getPacket(pt);
+		protocolType = pt;
+		System.arraycopy(buf, 0, packet, 0, packet.length);
+	}
+
+	public String getId() {
+		// String(byte[] bytes, int offset, int length)
+		return new String(packet, LEN_PROTOCOL_TYPE, LEN_LOGIN_ID).trim();
+	}
+
+	// byte[] packet ??? String IDÎ•? byte[]Î°? Îß?????? ???Î°???ÏΩ? ????? Î∞?Î°? ??∑Î??Î∂???
+	// Ï∂?????????.
+	public void setId(String id) {
+		System.arraycopy(id.trim().getBytes(), 0, packet, LEN_PROTOCOL_TYPE, id.trim().getBytes().length);
+	}
+
+	public String getPassword() {
+		// Íµ¨Ï????ºÎ?? Î≥¥Ï?? ??????????????? byte[] ?????? Î°?Í∑???? ????????? Î∞?Î°? ??∑Î??Î∂???
+		// ?????¥Í????? ??? ??????.
+		return new String(packet, LEN_PROTOCOL_TYPE + LEN_LOGIN_ID, LEN_LOGIN_PASSWORD).trim();
+	}
+
+	public void setPassword(String password) {
+		System.arraycopy(password.trim().getBytes(), 0, packet, LEN_PROTOCOL_TYPE + LEN_LOGIN_ID,
+				password.trim().getBytes().length);
+		packet[LEN_PROTOCOL_TYPE + LEN_LOGIN_ID + password.trim().getBytes().length] = '\0';
+	}
+
+}
