@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/d210744c0d.js" crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            background-color: #263343;
+            color: white;
+            position:fixed;
+            width: 100%;
+        }
+
+        .navbar_menu,
+        .navbar_icon {
+            list-style-type: none;
+            display: flex;
+        }
+
+        .navbar_icon {
+            margin-right: 60px;
+        }
+
+
+        .navbar_menu>li {
+            border: 1px solid tan;
+            border-radius: 5px;
+            margin: 5px;
+            margin-top: 13px;
+            width: 90px;
+            text-align: center;
+            height: 30px;
+        }
+
+        .navbar_logo>i {
+            font-size: 35px;
+            margin: 10px;
+            color: tan;
+        }
+
+        .navbar_icon>li {
+            font-size: 20px;
+            line-height: 50px;
+
+        }
+
+        li {
+            padding-right: 5px;
+            padding-left: 5px;
+            line-height: 30px;
+        }
+
+        li:hover {
+            background-color: tan;
+        }
+
+        
+
+        @media screen and (max-width: 800px) {
+            .navbar_toogleBtn {
+                display: block;
+            }
+            .navbar_menu{
+                visibility: hidden;
+            }
+
+            .navbar_icon {
+                visibility: hidden;
+            }
+        }
+
+        @media screen and (min-width: 799px) {
+            .navbar_toogleBtn {
+                display: none;
+            }
+
+            .navbar_icon {
+                visibility: visible;
+            }
+        }
+
+        .navbar_toogleBtn {
+            position: absolute;
+            top: 7px;
+            right: 50px;
+            font-size: 30px;
+        }
+
+        a{
+            color: white;
+        }
+
+        #middle{
+            width: 100%;
+            height: 600px;
+            display: flex;
+            padding-top: 55px;
+        }
+
+        aside {
+            width: 400px;
+            height: 600px;
+            background-color: beige;
+        }
+
+        aside > ul{
+            list-style-type: none;
+            text-align: center;
+            line-height: 40px;
+            margin-top: 10px;
+            font-size: 25px;
+        }
+        aside > ul> li{
+            margin: 10px;
+        }
+
+        main {
+            width: 100%;
+            height: 600px;
+            background-color: bisque;
+        }
+        
+        footer{
+            width: 100%;
+            height: 150px;
+            background-color: antiquewhite;
+            
+        }
+        footer > p{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            line-height: 35px;
+        }
+        #loginform{
+            text-align: center;
+            margin-top: 100px;
+        }
+        #signupform{
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+    <script>
+        function pageChange(page, location){
+            fetch(location)
+            .then(res => res.text())
+            .then(html => document.querySelector(page).innerHTML = html);
+        }
+    	function isChecked(){
+    		if (document.querySelector("#checkbox").checked){
+    			pageChange('main','./member/memberValidate.html');
+    		}else {
+    			alert('약관 동의에 체크해주세요.')
+    			return;
+    		}
+    	}
+    	pcon = false;
+    	function confirm() {
+    		//공란확인
+    		if (document.querySelector("#id").value=="") {
+    			alert('아이디 칸이 비어있습니다.')
+    			document.querySelector("#id").focus();
+    			return false;
+    		}
+    		if (document.querySelector("#id").value.length < 5 || document.querySelector("#id").value.length > 12) {
+    			alert('아이디는 5자 이상 12자 이하여야 합니다.')
+    			document.querySelector("#id").focus();
+    			return false;
+    		}
+    		if (document.querySelector("#password").value=="") {
+    			alert('비밀번호 칸이 비어있습니다.')
+    			document.querySelector("#password").focus();
+    			return false;
+    		}
+    		if (document.querySelector("#tel").value=="") {
+    			alert('전화번호 칸이 비어있습니다.')
+    			document.querySelector("#tel").focus();
+    			return false;
+    		}
+    		if (document.querySelector("#address").value=="") {
+    			alert('주소 칸이 비어있습니다.')
+    			document.querySelector("#address").focus();
+    			return false;
+    		}
+    		if (!(pcon)) {
+    			alert('비밀번호 검증을 하지 않았습니다.')
+    			document.querySelector("#repassword").focus();
+    			return false;
+    		}
+    		document.forms[0].requestSubmit();
+    	}
+    	function confirmpwd() {
+    		if (document.querySelector("#password").value.length < 8 || document.querySelector("#password").value.length > 20) {
+    			alert('비밀번호는 8자 이상 20자 이하여야 합니다.')
+    			document.querySelector("#password").focus();
+    			return;
+    		}
+    		if (document.querySelector("#repassword").value!=document.querySelector("#password").value) {
+    			alert('비밀번호 확인이 일치하지 않습니다.')
+    			document.querySelector("#repassword").focus();
+    			return;
+    		}else {
+    			alert('비밀번호가 일치합니다.');
+    			document.querySelector("#pcon").value="일치함";
+    			document.querySelector("#pcon").disabled='disabled';
+    			document.querySelector("#repassword").disabled='disabled';
+    			document.querySelector("#password").disabled='disabled';
+    			document.querySelector("#tel").focus();
+    			pcon = true;
+    		}
+    	}
+    </script>
+</head>
+
+<body>
+    <div id="container">
+        <nav class="navbar">
+            <div class="navbar_logo" onclick="location.href='index.html'"><i class="fab fa-accusoft"></i></div>
+            <ul class="navbar_menu">
+                <li onmouseenter="pageChange('aside','company.html')">회사소개</li>
+                <li onmouseenter="pageChange('aside','info.html')">사업안내</li>
+                <li onclick="pageChange('main','/phonebook/list.jsp')">전화번호부</li>
+                <li onmouseenter="pageChange('aside','gallary.html')">갤러리</li>
+                <li onmouseenter="pageChange('aside','board.html')">게시판</li>
+            </ul>
+            <ul class="navbar_icon">
+                <li><i class="fas fa-camera"></i></li>
+                <li><i class="fas fa-envelope"></i></li>
+                <li onclick="pageChange('main','./login/login.html')"><i class="fas fa-user-plus"></i></li>
+            </ul>
+            <a class="navbar_toogleBtn" href="#">
+                <i class="fas fa-bars"></i>
+            </a>
+        </nav>
+        <div id="middle">
+            <aside></aside>
+            <main><h1 style="text-align: center;">메인</h1></main>
+        </div>
+        <footer>
+            <p>주식회사 어쩌구저쩌구</p>
+            <p>사업자 등록번호 : 000-0000-0000 | 대표 : 김아무개</p>
+            <p>00000 서울특별시 어쩌구 어쩔동</p>
+            <p>고객센터 : 02-000-0000</p>
+        </footer>
+    </div>
+</body>
+
+</html>

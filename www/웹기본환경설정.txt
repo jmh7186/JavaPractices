@@ -1,0 +1,83 @@
+1)프로그램 설치
+2)프로그램 세팅(path 설정, 개발환경 설정 등)
+3)프로그램 사용(통합개발도구를 이용한 프로젝트 실시)
+
+-Apache Tomcat WebServer
+1)프로그램 설치
+https://tomcat.apache.org/
+
+2)프로그램 세팅(path 설정, 개발환경 설정 등)
+JAVA_HOME, JRE_HOME 환경변수
+PATH = %JAVA_HOME%\bin;
+server.xml : 포트번호, 기본경로 설정 등
+web.xml : 서블릿 동작 환경설정
+context.xml
+
+3)프로그램 사용(통합개발도구를 이용한 프로젝트 실시)
+기초적인 도구(메모장)
+"C:\Users\admin\Documents\apache-tomcat-9.0.71\webapps\ROOT\"
+= http://localhost:8080/
+
+"C:\Users\admin\Documents\apache-tomcat-9.0.71\webapps\ROOT\test.txt"
+= http://localhost:8080/test.txt
+
+"C:\Users\admin\Documents\apache-tomcat-9.0.71\webapps\www\index.txt"
+= http://localhost:8080/www/index.txt
+
+기본경로 설정 <Host> 태그 아래쪽에
+<Context path="/joengie" docBase="C:\Users\admin\Documents\apache-tomcat-9.0.71\webapps\www\"
+																							privileged="true" reloadable="true" />
+"C:\Users\admin\Documents\apache-tomcat-9.0.71\webapps\www\index.txt"
+= http://localhost:8080/joengie/index.txt
+
+path가 "/" 일 경우
+= http://localhost:8080/index.txt
+
+문서의 인코딩 설정을 알려주는 태그 (입력하지 않으면 한글이 깨짐)
+<meta charset="UTF-8">
+
+서블릿
+기본path 내에 WEB-INF 폴더 생성 (대소문자 구분)
+자바 파일 생성(.java) 후 HttpServlet을 상속받은 코드 작성
+컴파일
+javac -cp "C:\Users\admin\Documents\apache-tomcat-9.0.71\lib\servlet-api.jar" Test.java -encoding UTF-8
+ >> WEB-INF/classes 폴더 생성 후 이 안에 .class 파일 생성
+
+WEB-INF/web.xml에 컴파일한 서블릿 클래스 등록
+
+<servlet>
+	<servlet-name>servletTest</servlet-name>
+	<servlet-class>Test</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>servletTest</servlet-name>
+	<url-pattern>/servlet</url-pattern>
+</servlet-mapping>
+
+이후 http://localhost:8080/servlet 접속 시 servlet 실행됨
+
+
+통합개발도구(이클립스)
+
+dynamic web project 생성 (서버 생성)
+서버 세팅에서 포트 설정
+module 탭으로 이동하여 서버 path 설정
+src/main/java에 서블릿 작성 (New 에서 서블릿 선택 가능)
+src/main/webapp/WEB-INF에 web.xml 파일 복사, 서블릿 매핑 -- 서블릿 java코드의 @WebServlet() 어노테이션이 이 역할을 수행함
+참고사항) 패키지가 있는 클래스의 경우에는 <servlet-class>패키지명.클래스명</servlet-class> 형식으로 등록해야 한다.
+
+//클래스별 param값 설정
+<init-param>
+		<param-name>key</param-name>
+		<param-value>1234</param-value>
+</init-param>
+자바에서 가져오기 >> getServletConfig().getInitParameter("key")
+
+
+//전역 param 값 설정
+<context-param>
+	<param-name>user</param-name>
+	<param-value>system</param-value>
+</context-param>
+자바에서 가져오기 >> getServletContext().getInitParameter("user")
