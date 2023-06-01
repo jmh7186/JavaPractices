@@ -1,0 +1,16 @@
+<meta charset="UTF-8">
+	<form action="m.jsp" id="signup" method="post" onsubmit="return confirm()">
+		<ul>
+			<li><h1>회원가입</h1></li>
+			<li>아이디<br><input type="text" id="id" name="id"></li>
+			<li>비밀번호<br><input type="password" id="password" name="password"></li>
+			<li>비밀번호 확인<br><input type="password" id="repassword" name="repassword"></li>
+			<li><input type="button" id="pcon" name="pcon" value="비밀번호 검증" onclick="confirmpwd()"></li>
+			<li>전화번호<br><input type="tel" id="tel" name="tel"></li>
+			<li>주소<br><input type="text" id="address" name="address"></li>
+			<li>
+				<input type="submit" value="회원가입">
+				<input type="reset" id="reset" name="reset" value="취소" onclick="location.reload()">
+			</li>
+		</ul>
+	</form>

@@ -13,11 +13,7 @@ PreparedStatement pstat = conn.prepareStatement("select * from phonebook");
 ResultSet rs = pstat.executeQuery();
 %>
 <meta charset="UTF-8">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
 <body>
 	<div class="container mt3">
 		<h1>전화번호부</h1>
