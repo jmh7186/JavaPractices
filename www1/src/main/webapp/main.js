@@ -1,6 +1,7 @@
 function pageChange(page, location) {
 	$(function() {
 		$(page).load(`/${page}/${location}`);
+		$.getScript("/main.js");
 	});
 }
 function isChecked() {
@@ -67,11 +68,6 @@ function confirm() {
 	if (document.querySelector("#tel").value == "") {
 		alert('전화번호 칸이 비어있습니다.')
 		document.querySelector("#tel").focus();
-		return false;
-	}
-	if (document.querySelector("#address").value == "") {
-		alert('주소 칸이 비어있습니다.')
-		document.querySelector("#address").focus();
 		return false;
 	}
 	if (!(pcon)) {

@@ -8,17 +8,21 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
-	<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.css"
-	rel="stylesheet">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.js"></script>
-	
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.js"></script>
 	<script src="https://kit.fontawesome.com/d210744c0d.js" crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.js"></script>
-	<link rel="stylesheet" href="/style.css">
+	
+	<!-- jQuery 코드와 JavaScript 코드가 혼용되어 있을 경우 둘 다 로드하면
+	문제가 발생할 수 있으므로 각각 파일을 나누기를 권장 -->
+	<script src="/main.js"></script>
 	<script>
 		$.getScript("/main.js");
+		<%if(request.getParameter("page")!=null) {
+			%>pageChange('main','<%=request.getParameter("page")%>');<%
+		}
+		System.out.println(session.getAttribute("id"));
+		%>
 	</script>
 </head>
 
@@ -38,7 +42,14 @@
 			<ul class="navbar_icon">
 				<li><i class="fas fa-camera"></i></li>
 				<li><i class="fas fa-envelope"></i></li>
-				<li onclick="pageChange('main','login.html')"><i class="fas fa-user-plus"></i></li>
+				<%if(session.getAttribute("id")==null) {%>
+					<li onclick="pageChange('main','login.html')"><i class="fas fa-user-plus"></i></li>
+				<%}else{%>
+					<li>
+						환영합니다. <%=session.getAttribute("id")%>.<br>
+					</li>
+					<button>로그아웃</button>
+				<%}%>
 			</ul>
 			<a class="navbar_toogleBtn" href="#"> <i class="fas fa-bars"></i>
 			</a>
@@ -57,5 +68,5 @@
 		</footer>
 	</div>
 </body>
-
+<link rel="stylesheet" href="/style.css">
 </html>

@@ -7,13 +7,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
+if(session.getAttribute("id")!=null) {
 Class.forName("oracle.jdbc.driver.OracleDriver");
 Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "1234");
 PreparedStatement pstat = conn.prepareStatement("select * from phonebook");
 ResultSet rs = pstat.executeQuery();
 %>
 <meta charset="UTF-8">
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <body>
 	<div class="container mt3">
 		<h1>전화번호부</h1>
@@ -94,3 +96,8 @@ ResultSet rs = pstat.executeQuery();
 			class="btn btn-warning">전화번호 추가</button>
 	</div>
 </body>
+<%}else {%>
+	<script>
+		alert('로그인 후 이용 가능합니다.');
+	</script>
+<%}%>
