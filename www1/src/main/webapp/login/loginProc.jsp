@@ -17,6 +17,7 @@ if(rs.next()) {
 	//application.setAttribute("id", id); //전역변수 개념(웹 어플리케이션에 종료될때까지 유지됨)
 	//request.setAttribute("id", id); //지역변수 개념(이 페이지에서 나가면 사라짐)
 	session.setAttribute("id", id); //세션이 종료될 때 까지 유지됨
+	//session.setMaxInactiveInterval(5*60); //세션 유지 제한시간 설정
 	%>
 	<script>
 		alert('로그인 성공');

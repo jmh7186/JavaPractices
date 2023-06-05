@@ -46,9 +46,8 @@
 					<li onclick="pageChange('main','login.html')"><i class="fas fa-user-plus"></i></li>
 				<%}else{%>
 					<li>
-						환영합니다. <%=session.getAttribute("id")%>.<br>
+						환영합니다. <%=session.getAttribute("id")%>. <a style="color:white" href="/login/logout.jsp">[로그아웃]</a><br>
 					</li>
-					<button>로그아웃</button>
 				<%}%>
 			</ul>
 			<a class="navbar_toogleBtn" href="#"> <i class="fas fa-bars"></i>
