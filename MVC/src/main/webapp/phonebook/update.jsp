@@ -47,7 +47,7 @@ conn.close();
 <body>
 
 <div class="container mt-3">
-<button type="button" class="btn btn-success" onclick="location.href='list.jsp'">홈</button>  
+<button type="button" class="btn btn-success" onclick="location.href='/list'">홈</button>  
 <h2>전화번호부 수정</h2>
 		<form action="updateProc.jsp">
 			<div class="mb-3 mt-3">

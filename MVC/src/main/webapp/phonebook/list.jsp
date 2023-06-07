@@ -72,7 +72,7 @@ request.setAttribute("data", list); //자바 코드 없이 사용하기 위한 �
         </thead>
         <tbody>
         	<c:forEach var="i" begin="0" end="10" step="1">
-          	<tr onclick="location.href='/phonebook/view.jsp?idx=${data[i].idx}'">
+          	<tr onclick="location.href='/view?idx=${data[i].idx}'">
             	<td>${data[i].idx}</td>
             	<td>${data[i].name}</td>
             	<td>${data[i].hp}</td>
@@ -86,7 +86,7 @@ request.setAttribute("data", list); //자바 코드 없이 사용하기 위한 �
         </tbody>
       </table>
     </div>
-    <button onclick="location.href='insert.jsp'" class="btn btn-warning">전화번호 추가</button>
+    <button onclick="location.href='/insert'" class="btn btn-warning">전화번호 추가</button>
   </div>
 </body>
 </html>

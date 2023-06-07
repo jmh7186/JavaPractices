@@ -54,7 +54,7 @@ conn.close();
 
 	<div class="container mt-3">
 		<button type="button" class="btn btn-success"
-			onclick="location.href='list.jsp'">홈</button>
+			onclick="location.href='/list'">홈</button>
 		<h2>전화번호부 삭제</h2>
 		<form action="deleteProc.jsp">
 			<div class="mb-3 mt-3">

@@ -1,5 +1,9 @@
 package phonebook;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class PhonebookVO {
 	private String idx;
 	private String name;
@@ -50,6 +54,8 @@ public class PhonebookVO {
 	}
 
 	public String getCompany() {
+		if (company == null || company.equals(""))
+			return "-";
 		return company;
 	}
 
@@ -58,6 +64,8 @@ public class PhonebookVO {
 	}
 
 	public String getEmail() {
+		if (email == null || email.equals(""))
+			return "-";
 		return email;
 	}
 
@@ -66,7 +74,19 @@ public class PhonebookVO {
 	}
 
 	public String getBirthday() {
-		return birthday;
+		try {
+			if (birthday != null && !(birthday.equals(""))) {
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+				Date _birthday;
+				_birthday = formatter.parse(birthday);
+				birthday = formatter.format(_birthday);
+				return birthday;
+			}
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return "ERROR";
+		}
+		return "-";
 	}
 
 	public void setBirthday(String birthday) {
@@ -74,6 +94,8 @@ public class PhonebookVO {
 	}
 
 	public String getAddress() {
+		if (address == null || address.equals(""))
+			return "-";
 		return address;
 	}
 
@@ -82,6 +104,8 @@ public class PhonebookVO {
 	}
 
 	public String getMemo() {
+		if (memo == null || memo.equals(""))
+			return "-";
 		return memo;
 	}
 

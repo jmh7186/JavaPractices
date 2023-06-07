@@ -17,7 +17,6 @@
 	문제가 발생할 수 있으므로 각각 파일을 나누기를 권장 -->
 	<script src="/main.js"></script>
 	<script>
-		$.getScript("/main.js");
 		<%if(request.getParameter("page")!=null) {
 			%>pageChange('main','<%=request.getParameter("page")%>');<%
 		}

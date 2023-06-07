@@ -40,7 +40,9 @@ public class PhonebookDAO {
 		pstat.setString(3, p.getCompany());
 		pstat.setString(4, p.getEmail());
 		pstat.setString(5, p.getAddress());
-		pstat.setString(6, p.getBirthday());
+		String birthday = p.getBirthday();
+		if (birthday=="-") birthday=null;
+		pstat.setString(6, birthday);
 		pstat.setString(7, p.getMemo());
 		return pstat.executeUpdate();
 		}catch (Exception e) {
@@ -76,11 +78,11 @@ public class PhonebookDAO {
 	
 		if (newp.getName()!=null && !(newp.getName().equals(""))) p.setName(newp.getName());
 		if (newp.getHp()!=null && !(newp.getHp().equals(""))) p.setHp(newp.getHp());
-		if (newp.getCompany()!=null && !(newp.getCompany().equals(""))) p.setCompany(newp.getCompany());
-		if (newp.getEmail()!=null && !(newp.getEmail().equals(""))) p.setEmail(newp.getEmail());
-		if (newp.getAddress()!=null && !(newp.getAddress().equals(""))) p.setAddress(newp.getAddress());
-		if (newp.getBirthday()!=null && !(newp.getBirthday().equals(""))) p.setBirthday(newp.getBirthday());
-		if (newp.getMemo()!=null && !(newp.getMemo().equals(""))) p.setMemo(newp.getMemo());
+		if (newp.getCompany()!=null && !(newp.getCompany().equals("-"))) p.setCompany(newp.getCompany());
+		if (newp.getEmail()!=null && !(newp.getEmail().equals("-"))) p.setEmail(newp.getEmail());
+		if (newp.getAddress()!=null && !(newp.getAddress().equals("-"))) p.setAddress(newp.getAddress());
+		if (newp.getBirthday()!=null && !(newp.getBirthday().equals("-"))) p.setBirthday(newp.getBirthday());
+		if (newp.getMemo()!=null && !(newp.getMemo().equals("-"))) p.setMemo(newp.getMemo());
 		
 		pstat = conn.prepareStatement("update phonebook set name=?,hp=?,company=?,email=?,address=?,birthday=?,memo=? where idx=?");
 		pstat.setString(1, p.getName());
@@ -114,22 +116,22 @@ public class PhonebookDAO {
 				name = rs.getString("name");
 				hp = rs.getString("hp");
 				company = rs.getString("company");
-				if (company == null)
-					company = "-";
+//				if (company == null)
+//					company = "-";
 				email = rs.getString("email");
-				if (email == null)
-					email = "-";
-				birthday = "-";
-				if (rs.getString("birthday") != null) {
-					Date _birthday = formatter.parse(rs.getString("birthday"));
-					birthday = formatter.format(_birthday);
-				}
+//				if (email == null)
+//					email = "-";
+				birthday = rs.getString("birthday");
+//				if (rs.getString("birthday") != null) {
+//					Date _birthday = formatter.parse(rs.getString("birthday"));
+//					birthday = formatter.format(_birthday);
+//				}
 				address = rs.getString("address");
-				if (address == null)
-					address = "-";
+//				if (address == null)
+//					address = "-";
 				memo = rs.getString("memo");
-				if (memo == null)
-					memo = "-";
+//				if (memo == null)
+//					memo = "-";
 				PhonebookVO pb = new PhonebookVO(idx, name, hp, company, email, address, birthday, memo);
 				list.add(pb);
 			}
@@ -142,4 +144,8 @@ public class PhonebookDAO {
 		}
 		return null;
 	}
+	
+//	public PhonebookVO search() {
+		
+//	}
 }
