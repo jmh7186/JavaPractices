@@ -54,6 +54,13 @@
             background-color: tan;
             width: 300px;
             height: 500px;
+            text-align: center;
+        }
+        aside > div{
+        	margin-top: 20px;
+        }
+        aside > div > ul > li{
+        	margin-top: 20px;
         }
 
         section {
@@ -69,6 +76,12 @@
             height: 100px;
             background-color: tan;
             margin-top: 20px;
+            display: flex;
+        	justify-content: center;
+        }
+        footer > div{
+        	float: left;
+        	clear: both;
         }
 
         #loginform {
@@ -295,7 +308,7 @@
                 <li onclick="location.href='/'">HOME</li>
                 <li onclick="pageChanger('aside','company.html');pageChanger('section','companyinfo.html');">COMPANY</li>
                 <li onclick="pageChanger('section','contact.html')">CONTACT</li>
-                <li onclick="pageChanger('aside','board.html')">게시판</li>
+                <li onclick="pageChanger('aside','board.html');pageChanger('section','boardpage.html')">게시판</li>
             </ul>
         </nav>
     </div>
@@ -304,10 +317,12 @@
         <section></section>
     </div>
     <footer>
-        <p> Gildong Co. All Copyrights.</p>
-        <p> Chicago, US</p>
-        <p> Phone: +00 151515</p>
-        <p> mail@mail.com</p>
+    	<div>
+        	<p> Gildong Co. All Copyrights.</p>
+        	<p> Chicago, US</p>
+        	<p> Phone: +00 151515</p>
+        	<p> mail@mail.com</p>
+        </div>
     </footer>
 </body>
 

@@ -1,9 +1,16 @@
 <style>
-    #board > a {
+    #board > div > a {
         display: inline;
         background-color: white;
         border: 1px solid gray;
         padding: 5px;
+    }
+    #board {
+    	text-align: center;
+    	width: 80%;
+    }
+    #board > table {
+    	width: 100%;
     }
 </style>
 <div id="board">
@@ -12,7 +19,7 @@
         <input type="text" readonly value="게시판명 ▼">
         <input type="search">
         <button>조회</button>
-        <button>등록</button>
+        <button onclick="pageChanger('section','boardwrite.html')">등록</button>
     </div><br>
     <hr>
     <table border="1">
@@ -28,9 +35,12 @@
         <tr><td>29</td><td>게시판2</td><td>테스트1</td><td>20170910</td><td>0</td></tr>
         <tr><td>30</td><td>게시판2</td><td>테스트1</td><td>20170910</td><td>0</td></tr>
     </table>
-    <a href="">1</a>
-    <a href="">2</a>
-    <a href="">3</a>
-    <a href="">4</a>
-    <a href="">5</a>
+    <div style="margin-top: 10px">
+    	<a href="">1</a>
+    	<a href="">2</a>
+    	<a href="" style="background-color: blue; color:white;">3</a>
+    	<a href="">4</a>
+    	<a href="">5</a>
+    </div>
+    
 </div>
