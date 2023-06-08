@@ -1,44 +1,44 @@
 function isChecked() {
-		if (document.getElementById("checkbox").checked) {
-			location.href='/signup';
-		} else {
-			alert('약관 동의에 체크해주세요.');
-			return;
-		}
+	if (document.getElementById("checkbox").checked) {
+		location.href = '/signup';
+	} else {
+		alert('약관 동의에 체크해주세요.');
+		return;
+	}
 }
 
 function loginValidate() {
 	if (document.getElementById("id").value == "") {
 		alert('아이디 칸이 비어있습니다.')
 		document.getElementById("id").focus();
-		return;
+		return false;
 	}
-	if (document.getElementById("password").value == "") {
+	if (document.getElementById("pwd").value == "") {
 		alert('비밀번호 칸이 비어있습니다.');
-		document.getElementById("password").focus();
-		return;
+		document.getElementById("pwd").focus();
+		return false;
 	}
-	document.forms[0].requestSubmit();
+	return true;
 }
 
 pcon = false;
 function confirmpwd() {
-	if (document.getElementById("password").value.length < 8 || document.getElementById("password").value.length > 20) {
+	if (document.getElementById("pwd").value.length < 8 || document.getElementById("pwd").value.length > 20) {
 		alert('비밀번호는 8자 이상 20자 이하여야 합니다.')
-		document.getElementById("password").focus();
+		document.getElementById("pwd").focus();
 		return;
 	}
-	if (document.getElementById("repassword").value != document.getElementById("password").value) {
+	if (document.getElementById("repwd").value != document.getElementById("pwd").value) {
 		alert('비밀번호 확인이 일치하지 않습니다.')
-		document.getElementById("repassword").focus();
+		document.getElementById("repwd").focus();
 		return;
 	} else {
 		alert('비밀번호가 일치합니다.');
 		document.getElementById("pcon").value = "일치함";
 		document.getElementById("pcon").disabled = 'disabled';
-		document.getElementById("repassword").disabled = 'disabled';
-		document.getElementById("password").readOnly = true;
-		document.getElementById("tel").focus();
+		document.getElementById("repwd").disabled = 'disabled';
+		document.getElementById("pwd").readOnly = true;
+		document.getElementById("hp").focus();
 		pcon = true;
 	}
 }
@@ -54,19 +54,19 @@ function confirm() {
 		document.getElementById("id").focus();
 		return false;
 	}
-	if (document.getElementById("password").value == "") {
+	if (document.getElementById("pwd").value == "") {
 		alert('비밀번호 칸이 비어있습니다.')
-		document.getElementById("password").focus();
+		document.getElementById("pwd").focus();
 		return false;
 	}
-	if (document.getElementById("tel").value == "") {
+	if (document.getElementById("hp").value == "") {
 		alert('전화번호 칸이 비어있습니다.')
-		document.getElementById("tel").focus();
+		document.getElementById("hp").focus();
 		return false;
 	}
 	if (!(pcon)) {
 		alert('비밀번호 검증을 하지 않았습니다.')
-		document.getElementById("repassword").focus();
+		document.getElementById("repwd").focus();
 		return false;
 	}
 	return true;

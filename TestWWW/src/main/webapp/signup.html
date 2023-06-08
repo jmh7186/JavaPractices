@@ -1,0 +1,28 @@
+<style>
+
+</style>
+<form action="signupProc.jsp" id="signupform" onsubmit="return signupValidate()">
+    <div id="conlist">
+        <ul>
+            <li>1. 약관 동의</li>
+            <li><h2 style="margin: 0;">2. 정보 입력</h2></li>
+            <li>3. 회원가입 완료</li>
+        </ul>
+    </div>
+    회원가입 양식
+    <hr>
+    <ul id="signupinput">
+        <li>이름 <input type="text" name="name" id="name"></li>
+        <li>아이디 <input type="text" name="id" id="id"></li>
+        <li>비밀번호 <input type="password" name="pwd" id="pwd"></li>
+        <li>
+            비밀번호 확인 <input type="password" name="repwd" id="repwd">
+        </li>
+        <input type="button" value="비밀번호 확인" id="repwdbtn" onclick="pwdValidate()">
+        <li>이메일 <input type="text" name="email" id="email"></li>
+    </ul><br>
+    <div id="signupBtns">
+        <input type="button" value="가입취소" onclick="location.href='/'">
+        <input type="submit" value="회원가입">
+    </div>
+</form>

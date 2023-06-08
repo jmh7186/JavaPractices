@@ -17,7 +17,6 @@
 List<PhonebookVO> list = new PhonebookDAO().findAll();
 request.setAttribute("data", list); //자바 코드 없이 사용하기 위한 설정
 %>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,6 +37,11 @@ request.setAttribute("data", list); //자바 코드 없이 사용하기 위한 �
   		location.href="searchList.jsp?kind="+kind+"&search="+svalue;
   	}
   </script>
+  <style>
+    *{
+      color: tan;
+    }
+  </style>
 </head>
 
 <body>

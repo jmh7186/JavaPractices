@@ -9,7 +9,7 @@ Class.forName("oracle.jdbc.driver.OracleDriver");
 Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "1234");
 PreparedStatement pstat = conn.prepareStatement("select * from member where mid=? and mpwd=?");
 String id = request.getParameter("id");
-String pwd = request.getParameter("password");
+String pwd = request.getParameter("pwd");
 pstat.setString(1, id);
 pstat.setString(2, pwd);
 ResultSet rs = pstat.executeQuery();

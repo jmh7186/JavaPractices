@@ -12,14 +12,12 @@ public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public MainController() {
-		
+		System.out.println("ganarate controller");
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
-		response.setCharacterEncoding("UTF-8");
+		System.out.println("service controller");
 		
 		String uri = request.getRequestURI();
 
@@ -27,6 +25,9 @@ public class MainController extends HttpServlet {
 		String mainpage = "home/main.jsp";
 
 		if (uri.equals("/company")) {
+			asidepage = "aside/company.jsp";
+		} else if (uri.equals("/company/ceo")) {
+			mainpage = "main/CEO.jsp";
 			asidepage = "aside/company.jsp";
 		} else if (uri.equals("/info")) {
 			asidepage = "aside/info.jsp";

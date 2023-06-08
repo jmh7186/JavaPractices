@@ -21,7 +21,7 @@
     <ul id="index">
         <h1>회사소개</h1>
         <br>
-        <li onclick="pageChange('main','CEO.html')">CEO</li>
+        <li onclick="location.href='/company/ceo'">CEO</li>
         <li>회사현황</li>
         <li>연혁</li>
         <li>인재채용</li>

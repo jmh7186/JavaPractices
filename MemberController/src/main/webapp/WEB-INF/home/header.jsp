@@ -5,11 +5,11 @@
 		<i class="fab fa-accusoft"></i>
 	</div>
 	<ul class="navbar_menu">
-		<li onmouseenter="location.href='/company'">회사소개</li>
-		<li onmouseenter="location.href='/info'">사업안내</li>
+		<li onclick="location.href='/company'">회사소개</li>
+		<li onclick="location.href='/info'">사업안내</li>
 		<li onclick="location.href='/phonebook'">전화번호부</li>
-		<li onmouseenter="location.href='/gallary'">갤러리</li>
-		<li onmouseenter="location.href='/board'">게시판</li>
+		<li onclick="location.href='/gallary'">갤러리</li>
+		<li onclick="location.href='/board'">게시판</li>
 	</ul>
 	<ul class="navbar_icon">
 		<li><i class="fas fa-camera"></i></li>
