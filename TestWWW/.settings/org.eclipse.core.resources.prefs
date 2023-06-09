@@ -1,2 +1,11 @@
 eclipse.preferences.version=1
-encoding/<project>=EUC-KR
+encoding//src/main/webapp/boardpage.html=UTF-8
+encoding//src/main/webapp/company.html=UTF-8
+encoding//src/main/webapp/companyinfo.html=UTF-8
+encoding//src/main/webapp/contact.html=UTF-8
+encoding//src/main/webapp/contract.html=UTF-8
+encoding//src/main/webapp/home.html=UTF-8
+encoding//src/main/webapp/index.html=UTF-8
+encoding//src/main/webapp/login.html=UTF-8
+encoding//src/main/webapp/signup.html=UTF-8
+encoding/<project>=UTF-8
