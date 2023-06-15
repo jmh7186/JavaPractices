@@ -1,5 +1,5 @@
-<%@page import="phonebook.PhonebookDAO"%>
-<%@page import="phonebook.PhonebookVO"%>
+<%@page import="phonebookmvc1.dao.PhonebookDAO"%>
+<%@page import="phonebookmvc1.vo.PhonebookVO"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>

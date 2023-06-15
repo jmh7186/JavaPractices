@@ -1,5 +1,5 @@
-<%@page import="phonebook.PhonebookDAO"%>
-<%@page import="phonebook.PhonebookVO"%>
+<%@page import="phonebookmvc1.dao.PhonebookDAO"%>
+<%@page import="phonebookmvc1.vo.PhonebookVO"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.PreparedStatement"%>

@@ -42,7 +42,7 @@ public class MemberDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return 0; // ¿À·ù
+		return 0; // ì˜¤ë¥˜
 	}
 
 	public List<MemberVO> findAll() {
@@ -71,7 +71,7 @@ public class MemberDAO {
 						rs.getString("madr"));
 				return m;
 			} else {
-				return null; // °ª Ã£À» ¼ö ¾øÀ½
+				return null; // ê°’ ì°¾ì„ ìˆ˜ ì—†ìŒ
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -82,7 +82,7 @@ public class MemberDAO {
 	public int updateById(String keyword, String id, String pwd, String hp, String adr) {
 		try {
 			if (keyword.equals("")) {
-				return VALUE_NULL; // °ª ºñ¾îÀÖÀ½
+				return VALUE_NULL; // ê°’ ë¹„ì–´ìˆìŒ
 			}
 			PreparedStatement pstat = conn.prepareStatement("select mid from member");
 			ResultSet rs = pstat.executeQuery();
@@ -111,7 +111,7 @@ public class MemberDAO {
 				pstat.setString(5, keyword);
 				return pstat.executeUpdate();
 			} else {
-				return VALUE_NOT_FOUND; // °ª Ã£À» ¼ö ¾øÀ½
+				return VALUE_NOT_FOUND; // ê°’ ì°¾ì„ ìˆ˜ ì—†ìŒ
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -122,7 +122,7 @@ public class MemberDAO {
 	public int deleteById(String id) {
 		try {
 			if (id.equals("")) {
-				return VALUE_NULL; // °ª ºñ¾îÀÖÀ½
+				return VALUE_NULL; // ê°’ ë¹„ì–´ìˆìŒ
 			}
 			PreparedStatement pstat = conn.prepareStatement("select * from member where mid=?");
 			pstat.setString(1, id);
@@ -132,7 +132,7 @@ public class MemberDAO {
 				pstat.setString(1, id);
 				return pstat.executeUpdate();
 			} else {
-				return VALUE_NOT_FOUND; // °ª Ã£À» ¼ö ¾øÀ½
+				return VALUE_NOT_FOUND; // ê°’ ì°¾ì„ ìˆ˜ ì—†ìŒ
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
