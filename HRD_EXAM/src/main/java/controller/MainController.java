@@ -2,7 +2,6 @@ package controller;
 
 import java.io.IOException;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,18 +15,20 @@ import member.HrdDAO;
 public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public MainController() {
-    	
-    }
-    
-    public void init(ServletConfig config) throws ServletException {
-		try {
-			Class.forName(config.getInitParameter("driver"));
-			Class.forName("org.apache.commons.dbcp.PoolingDriver");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public MainController() {
+		
 	}
+
+/////////////////////////////////DBCP/////////////////////////////////////////
+//    public void init(ServletConfig config) throws ServletException {
+//		try {
+//			Class.forName(config.getInitParameter("driver"));
+//			Class.forName("org.apache.commons.dbcp.PoolingDriver");
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
+/////////////////////////////////DBCP/////////////////////////////////////////
     
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String uri = request.getRequestURI();

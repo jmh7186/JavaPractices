@@ -8,13 +8,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import jdbc.DBConn;
+
 public class HrdDAO {
 	Connection conn;
 	PreparedStatement ps;
 
 	public HrdDAO() {
 		try {
-			conn = DriverManager.getConnection("jdbc:apache:commons:dbcp:/pool");
+			conn = DBConn.getConnection();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -102,7 +104,7 @@ public class HrdDAO {
 
 	public List<HRD_MemberVO> findSales() {
 		try {
-			ps = conn.prepareStatement("select MEMBER.CUSTNO, MEMBER.CUSTNAME, MEMBER.GRADE, sum(MONEY.PRICE) SALES from MEMBER_TBL_02 MEMBER, MONEY_TBL_02 MONEY where MEMBER.CUSTNO=MONEY.CUSTNO and PRICE is not null group by MEMBER.CUSTNO, MEMBER.CUSTNAME, MEMBER.GRADE order by SALES desc");
+			ps = conn.prepareStatement("select CUSTNO, CUSTNAME, GRADE, sum(PRICE) SALES from MEMBER_TBL_02 natural join MONEY_TBL_02 where PRICE is not null group by CUSTNO, CUSTNAME, GRADE order by SALES desc");
 			ResultSet rs = ps.executeQuery();
 			List<HRD_MemberVO> lis = new ArrayList<HRD_MemberVO>();
 			while (rs.next()) {
