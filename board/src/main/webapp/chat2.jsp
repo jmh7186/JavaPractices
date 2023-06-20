@@ -20,7 +20,7 @@
 </body>
 <script>
 	/* 웹소켓 생성 (주소 필요) */
-	var ws = new WebSocket("ws://192.168.0.53:8080/chat");
+	var ws = new WebSocket("ws://192.168.0.53:8080/chat2");
 	/* 이벤트를 통해 데이터 송수신 */
 	ws.onopen = function(msg) {
 		console.log('Open');
