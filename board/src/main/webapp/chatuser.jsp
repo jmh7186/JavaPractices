@@ -45,8 +45,10 @@
 			}else {
 				document.querySelector('#chatbox').value+="로그인 실패\r\n";
 			}
-		}else if(kind == "chat" || kind=="sel") {
+		}else if(kind == "chat") {
 			document.querySelector('#chatbox').value+=json.id+" : "+json.msg+"\r\n";
+		}else if(kind=="sel") {
+			document.querySelector('#chatbox').value+="(귓속말)"+json.id+" : "+json.msg+"\r\n";
 		}
 	}
 	function submit() {

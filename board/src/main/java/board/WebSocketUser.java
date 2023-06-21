@@ -59,8 +59,12 @@ public class WebSocketUser {
 	@OnClose
 	public void close(Session session) {
 		System.out.println("Close");
+		for(int i=0;i<sessionlis.size();i++) {
+			if(sessionlis.get(i).getSession()==session) {
+				sessionlis.remove(i);
+			}
+		}
 		sessions.remove(session);
-		sessionlis.remove(session);
 	}
 
 	@OnError
@@ -90,7 +94,7 @@ public class WebSocketUser {
 				session.getAsyncRemote().sendText(jobj.toJSONString());
 			}else if(jobj.get("kind").equals("sel")) {
 				for(Sessionlis s : sessionlis) {
-					if(s.getId().equals(jobj.get("selid"))) {
+					if(s.getId().equals(jobj.get("selid")) || s.getId().equals(jobj.get("id"))) {
 						s.getSession().getAsyncRemote().sendText(jobj.toJSONString());
 					}
 				}
