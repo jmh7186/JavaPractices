@@ -1,4 +1,4 @@
-<%@page import="member.MemberDAO"%>
+<%@page import="dao.MemberDAO"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.DriverManager"%>
