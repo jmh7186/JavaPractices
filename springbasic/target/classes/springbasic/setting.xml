@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="score1" class="springbasic.Score"/>
+	<bean id="score2" class="springbasic.Score">
+		<constructor-arg value="100"></constructor-arg>
+		<constructor-arg value="90"></constructor-arg>
+		<constructor-arg value="80"></constructor-arg>
+	</bean>
+<!-- 위 코드의 문제점) 순차적으로 값을 입력해야 함 -->
+	<bean id="score3" class="springbasic.Score">
+		<property name="kor" value="100"></property>
+		<property name="eng" value="100"></property>
+		<property name="math" value="100"></property>
+		<!-- property의 name 값은 해당 변수의 set 함수를 가리키므로 그 함수가 존재하지 않으면 오류가 발생한다. -->
+	</bean>
+</beans>
