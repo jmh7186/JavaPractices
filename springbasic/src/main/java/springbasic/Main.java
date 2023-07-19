@@ -26,6 +26,10 @@ public class Main {
 		System.out.println(sc.toString());
 		sc = (Score) factory.getBean("score3");
 		System.out.println(sc.toString());
+		sc = (Score) factory.getBean("score4");
+		System.out.println(sc.toString());
+		Test ts = (Test) factory.getBean("test");
+		System.out.println(ts.toString());
 	}
 
 }

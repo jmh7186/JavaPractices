@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/util
+                        http://www.springframework.org/schema/util/spring-util-4.2.xsd">
+
+	<bean id="score" class="springbasic.Score" p:kor="20" p:eng="30" p:math="40"/>
+	<util:list id="arr">
+		<bean class="java.lang.String"><constructor-arg value="banana"/></bean>
+		<bean class="java.lang.String"><constructor-arg value="apple"/></bean>
+		<bean class="java.lang.String"><constructor-arg><value>mango</value></constructor-arg></bean>
+		<bean class="java.lang.String"><constructor-arg><value>melon</value></constructor-arg></bean>
+	</util:list>
+</beans>

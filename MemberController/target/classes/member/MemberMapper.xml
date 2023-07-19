@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member.MemberMapper">
+	<insert id="insert">insert into member values(#{m.id},#{m.pwd},#{m.hp},#{m.adr})</insert>
+	<select id="findAll" resultType="member.MemberVO">select * from member</select>
+	<select id="findById" resultType="member.MemberVO">select * from member where mid=#{id}</select>
+	<update id="updateById">update member set mpwd=#{m.pwd},mhp=#{m.hp},madr=#{m.adr} where mid=#{m.id}</update>
+	<delete id="deleteById">delete member where mid=#{id}</delete>
+</mapper>

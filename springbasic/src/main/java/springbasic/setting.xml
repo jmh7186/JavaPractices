@@ -9,11 +9,23 @@
 		<constructor-arg value="90"></constructor-arg>
 		<constructor-arg value="80"></constructor-arg>
 	</bean>
-<!-- 위 코드의 문제점) 순차적으로 값을 입력해야 함 -->
+	<!-- 위 코드의 문제점) 순차적으로 값을 입력해야 함 -->
 	<bean id="score3" class="springbasic.Score">
 		<property name="kor" value="100"></property>
 		<property name="eng" value="100"></property>
 		<property name="math" value="100"></property>
 		<!-- property의 name 값은 해당 변수의 set 함수를 가리키므로 그 함수가 존재하지 않으면 오류가 발생한다. -->
+		<!-- name="kor" value="100" == setKor(100) -->
+	</bean>
+	<bean id="score4" class="springbasic.Score">
+		<constructor-arg index="0" value="10" type="int"></constructor-arg>
+		<constructor-arg index="1" value="20" type="int"></constructor-arg>
+		<constructor-arg index="2" value="30" type="int"></constructor-arg>
+	</bean>
+	<bean id="test" class="springbasic.Test">
+		<constructor-arg value="55" type="int"></constructor-arg>
+		<constructor-arg value="김민수" type="String"></constructor-arg>
+		<constructor-arg value="7.712" type="float"></constructor-arg>
+		<!-- 같은 타입이 여러 개 있을 경우 index 속성으로 순서를 정해주어야 함 -->
 	</bean>
 </beans>
