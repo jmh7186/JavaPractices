@@ -15,9 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import mapper.BoardMapper;
 import vo.BoardVO;
 
-public class OracleBoardDAO implements BoardDAOInter{
+public class OracleBoardDAO implements BoardMapper{
 	//구현사항
 	//1. pool 또는 싱글톤 적용
 	//2. maven을 통한 라이브러리 관리

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.PhonebookMapper">
+	<insert id="insert">insert into phonebook values(#{idx},#{name},#{hp},#{company})</insert>
+	<select id="findAll" resultType="vo.PhonebookVO">select * from phonebook</select>
+	<select id="findById" resultType="vo.PhonebookVO">select * from phonebook where idx=#{idx}</select>
+	<update id="updateById">
+		update phonebook set name=#{name}, hp=#{hp}, company=#{company}, email=#{email}, address=#{address}, birthday=#{birthday}, memo=#{memo} where idx=#{idx}
+	</update>
+	<delete id="deleteById">delete phonebook where idx=#{idx}</delete>
+	<select id="totalCount">select count(*) from phonebook</select>
+	<select id="rowSelect" resultType="vo.PhonebookVO">select * from phonebook</select>
+</mapper>

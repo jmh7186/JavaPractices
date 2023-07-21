@@ -13,16 +13,13 @@
 		<li onclick="location.href='/map'">오시는 길</li>
 	</ul>
 	<ul class="navbar_icon">
-		<li><i class="fas fa-camera"></i></li>
-		<li><i class="fas fa-envelope"></i></li>
 		<c:choose>
 			<c:when test="${empty sessionScope.id}">
-				<li onclick="location.href='/login'"><i
-					class="fas fa-user-plus"></i></li>
+				<li onclick="location.href='/login'"><i	class="fas fa-user-plus"></i></li>
 			</c:when>
 			<c:otherwise>
 				<li>환영합니다. <a style="color: white" href="/member/view?id=${sessionScope.id}">${sessionScope.id}.</a>
-					<a style="color: white" href="/logoutProc">[로그아웃]</a><br>
+					<a style="color: white" href="/logoutProc">[로그아웃]</a>
 				</li>
 			</c:otherwise>
 		</c:choose>

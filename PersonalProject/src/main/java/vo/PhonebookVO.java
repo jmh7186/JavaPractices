@@ -1,5 +1,7 @@
 package vo;
 
+import java.sql.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,12 +14,12 @@ import lombok.ToString;
 @Setter
 @ToString
 public class PhonebookVO {
-	private String idx;
+	private int idx;
 	private String name;
 	private String hp;
 	private String company;
 	private String email;
-	private String birthday;
+	private Date birthday;
 	private String address;
 	private String memo;
 }

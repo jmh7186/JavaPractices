@@ -1,4 +1,4 @@
-package dao;
+package mapper;
 
 import java.util.List;
 
@@ -6,14 +6,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import vo.BoardVO;
 
-public interface BoardDAOInter {
+public interface BoardMapper {
 	
 	public List<BoardVO> findAll();
 	
 	public BoardVO findOneById(int idx);
 	
 	public int deleteById(int idx);
-	
 	
 	public List<BoardVO> findPage (int currentPage, int countPerPage);
 	

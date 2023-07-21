@@ -12,8 +12,8 @@ import lombok.ToString;
 @Setter
 @ToString
 public class MemberVO {
-	private String id;
-	private String pwd;
-	private String hp;
-	private String adr;
+	private String mid;
+	private String mpwd;
+	private String mhp;
+	private String madr;
 }

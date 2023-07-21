@@ -1,13 +1,21 @@
 package controller;
 
+import java.sql.Date;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
 
 import service.MemberService;
+import service.PhonebookService;
 import vo.MemberVO;
 
 @Controller
@@ -15,6 +23,9 @@ public class FrontController {
 	
 	@Autowired
 	MemberService mbservice;
+	
+	@Autowired
+	PhonebookService pbservice;
 
 	@RequestMapping(value = { "/", "/index" })
 	public ModelAndView mvIndex() {
@@ -34,27 +45,37 @@ public class FrontController {
 	}
 
 	@RequestMapping("/member/loginProc")
-	public ModelAndView mvLoginProc() {
+	public ModelAndView mvLoginProc(String id,String pwd, HttpSession request) {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("mainpage", "/member/loginProc.jsp");
+		MemberVO m = mbservice.findById(id);
+		
+		if(m!=null && m.getMid().equals(id) && m.getMpwd().equals(pwd)) {
+			mv.addObject("mainpage", "/member/loginProc.jsp");
+			mv.addObject("result",1);
+			request.setAttribute("id", id);
+		}else {
+			mv.addObject("mainpage", "/member/loginProc.jsp");
+			mv.addObject("result",0);
+		}
 		mv.setViewName("index");
 		return mv;
 	}
 
 	@RequestMapping("/logoutProc")
-	public ModelAndView mvLogoutProc(HttpServletRequest request) {
+	public ModelAndView mvLogoutProc(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		request.getSession().invalidate();
+		session.invalidate();
 		mv.addObject("mainpage", "home/main.jsp");
 		mv.setViewName("index");
 		return mv;
 	}
 
 	@RequestMapping("/member/view")
-	public ModelAndView mvMemberView() {
+	public ModelAndView mvMemberView(String id) {
 		ModelAndView mv = new ModelAndView();
 		
 		mv.addObject("mainpage", "member/viewmember.jsp");
+		mv.addObject("member", mbservice.findById(id));
 		mv.setViewName("index");
 		return mv;
 	}
@@ -68,11 +89,12 @@ public class FrontController {
 	}
 
 	@RequestMapping("/member/updateProc")
-	public ModelAndView mvUpdateProc(String id, String password, String hp, String address) {
+	public ModelAndView mvUpdateProc(String mid, String mpwd, String mhp, String madr) {
 		ModelAndView mv = new ModelAndView();
-		MemberVO m = new MemberVO(id,password,hp,address);
+		MemberVO m = new MemberVO(mid,mpwd,mhp,madr);
 		
 		int result = mbservice.updateById(m);
+		mv.addObject("mainpage", "member/updateProc.jsp");
 		mv.addObject("result", result);
 		mv.setViewName("index");
 		return mv;
@@ -95,21 +117,34 @@ public class FrontController {
 	}
 
 	@RequestMapping("/signup/signupProc")
-	public ModelAndView mvSignupProc(String id, String password, String hp, String address) {
+	public ModelAndView mvSignupProc(String id, String pwd, String hp, String adr) {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("mainpage", "member/loginProc.jsp");
-		int result = mbservice.insert(new MemberVO(id,password,hp,address));
-		mv.addObject("result",result);
+		mv.addObject("mainpage", "member/signupProc.jsp");
+		int result = mbservice.insert(new MemberVO(id,pwd,hp,adr));
+		
+		if(result==1) {
+			mv.addObject("mainpage", "member/welcome.jsp");
+			mv.addObject("id", id);
+		}else {
+			mv.addObject("mainpage", "member/signupProc.jsp");
+			mv.addObject("result", result);
+		}
 		mv.setViewName("index");
 		return mv;
 	}
-
-	@RequestMapping("/logout")
-	public ModelAndView logout() {
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("mainpage", "member/logout.jsp");
+	
+	@RequestMapping("/map")
+	public ModelAndView map(ModelAndView mv) {
+		mv.addObject("mainpage", "map/map.jsp");
 		mv.setViewName("index");
 		return mv;
 	}
-
+	
+	@RequestMapping("phonebook/pagelist")
+	public ModelAndView pbList(ModelAndView mv) {
+		mv.addObject("mainpage", "phonebook/list.jsp");
+		mv.addObject("pblist", pbservice.pageList());
+		mv.setViewName("index");
+		return mv;
+	}
 }

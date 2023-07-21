@@ -1,29 +1,30 @@
 package service;
 
 import java.util.List;
-import dao.PhonebookOracleDAO;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import mapper.PhonebookMapper;
 import vo.PhonebookVO;
 
+@Service
 public class PhonebookService {
-	PhonebookOracleDAO dao = new PhonebookOracleDAO();
-//	PhonebookMySqlDAO dao = new PhonebookMySqlDAO();
-//	PhonebookDAO dao = new PhonebookMySqlDAO();
+	
+	@Autowired
+	PhonebookMapper mapper;
 
 	public PhonebookPageList pageList(int currentPage) {
-		int countPerPage=10; //�������� ǥ�� ����ó ��
-		int totalCount=dao.totalCount(); //�� ����ó ��
-		///////////////////////////////////////////////////////
-		int totalPage; //��ü������ ��
+		int countPerPage=10;
+		int totalCount=mapper.totalCount();
+		int totalPage;
 		if(totalCount%countPerPage==0){
 			totalPage=totalCount/countPerPage;	
 		}else{
 			totalPage=(totalCount/countPerPage)+1;
 		}
-		///////////////////////////////////////////////////////
-//		int currentPage;  //����������
-		///////////////////////////////////////////////////////
-		int startPage; //���� ����ó ��ȣ
-		int endPage; //����ȣ
+		int startPage;
+		int endPage;
 		if ( currentPage/10<1 ) {
 			startPage=1;
 			endPage=10;
@@ -34,20 +35,19 @@ public class PhonebookService {
 		if(endPage>totalPage){
 			endPage=totalPage;
 		}
-		dao.rowSelect(currentPage, countPerPage);
-		return new PhonebookPageList(totalCount, countPerPage, totalPage, startPage, endPage, currentPage, dao.rowSelect(currentPage, countPerPage));
+		return new PhonebookPageList(totalCount, countPerPage, totalPage, startPage, endPage, currentPage, mapper.rowSelect(currentPage, countPerPage));
 	}
 
 	public List<PhonebookVO> findAll() {
-		return dao.findAll();
+		return mapper.findAll();
 	}
 
-	public PhonebookVO findOne(String idx) {
-		return dao.findOne(idx);
+	public PhonebookVO findById(String idx) {
+		return mapper.findById(idx);
 	}
 
-	public int delete(String idx) {
-		return dao.delete(idx);
+	public int deleteById(String idx) {
+		return mapper.deleteById(idx);
 	}
 
 }

@@ -14,24 +14,27 @@ public class MemberService {
 	@Autowired
 	MemberMapper mapper;
 	
-	public int insert(MemberVO member) {
-		return mapper.insert(member);
+	public int insert(MemberVO m) {
+		if(mapper.findById(m.getMid())==null) {
+			return mapper.insert(m);
+		}
+		return -1; // 아이디 중복됨
 	}
 
 	public List<MemberVO> findAll() {
 		return mapper.findAll();
 	}
 
-	public MemberVO findById(String id) {
-		return mapper.findById(id);
+	public MemberVO findById(String mid) {
+		return mapper.findById(mid);
 	}
 
-	public int updateById(MemberVO member) {
-		return mapper.updateById(member);
+	public int updateById(MemberVO m) {
+		return mapper.updateById(m);
 	}
 
-	public int deleteById(String id) {
-		return mapper.deleteById(id);
+	public int deleteById(String mid) {
+		return mapper.deleteById(mid);
 	}
 
 }
