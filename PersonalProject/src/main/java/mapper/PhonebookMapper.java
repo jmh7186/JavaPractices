@@ -2,6 +2,7 @@ package mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import vo.MemberVO;
@@ -20,5 +21,5 @@ public interface PhonebookMapper {
 
 	public int totalCount();
 
-	public List<PhonebookVO> rowSelect(int currentPage, int countPerPage);
+	public List<PhonebookVO> rowSelect(@Param("currentPage") int currentPage, @Param("countPerPage") int countPerPage);
 }

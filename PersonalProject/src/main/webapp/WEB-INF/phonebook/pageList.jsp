@@ -43,7 +43,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="pb" items="${pagelist.list}">
+					<c:forEach var="pb" items="${pblist.list}">
 						<tr onclick="location.href='/phonebook/view?idx=${pb.idx}'">
 							<td>${pb.idx}</td>
 							<td>${pb.name}</td>
@@ -59,12 +59,12 @@
 			</table>
 			<div class="container mt-3">
 				<ul class="pagination">
-					<c:if test="${pagelist.currentPage>=10}">
-						<li class="page-item"><a class="page-link" href="/phonebook/pagelist?page=${pagelist.startPage-1}">Previous</a></li>
+					<c:if test="${pblist.currentPage>=10}">
+						<li class="page-item"><a class="page-link" href="/phonebook/pagelist?page=${pblist.startPage-1}">Previous</a></li>
 					</c:if>
-					<c:forEach var="i" begin="${pagelist.startPage}" end="${pagelist.endPage}" step="1">
+					<c:forEach var="i" begin="${pblist.startPage}" end="${pblist.endPage}" step="1">
 						<c:choose>
-						<c:when test="${pagelist.currentPage==i}">
+						<c:when test="${pblist.currentPage==i}">
 							<li class="page-item active"><a class="page-link" href="/phonebook/pagelist?page=${i}">${i}</a></li>
 						</c:when>
 						<c:otherwise>
@@ -72,8 +72,8 @@
 						</c:otherwise>
 						</c:choose>
 					</c:forEach>
-					<c:if test="${pagelist.endPage!=pagelist.totalPage}">
-						<li class="page-item"><a class="page-link" href="/phonebook/pagelist?page=${pagelist.endPage+1}">Next</a></li>
+					<c:if test="${pblist.endPage!=pblist.totalPage}">
+						<li class="page-item"><a class="page-link" href="/phonebook/pagelist?page=${pblist.endPage+1}">Next</a></li>
 					</c:if>
 				</ul>
 			</div>

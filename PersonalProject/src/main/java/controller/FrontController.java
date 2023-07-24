@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -140,11 +141,28 @@ public class FrontController {
 		return mv;
 	}
 	
-	@RequestMapping("phonebook/pagelist")
-	public ModelAndView pbList(ModelAndView mv) {
-		mv.addObject("mainpage", "phonebook/list.jsp");
-		mv.addObject("pblist", pbservice.pageList());
+	@RequestMapping(value = {"phonebook/pagelist/{page}","phonebook/pagelist"})
+	public ModelAndView pbList(ModelAndView mv, @PathVariable(required = false, value = "page") Integer page) {
+		if(page==null) {
+			page=1;
+		}
+		mv.addObject("mainpage", "phonebook/pageList.jsp");
+		mv.addObject("pblist", pbservice.pageList(page));
 		mv.setViewName("index");
+		return mv;
+	}
+	
+	@RequestMapping("phonebook/view")
+	public ModelAndView pbView(ModelAndView mv, @RequestParam("idx") String idx) {
+		mv.addObject("p", pbservice.findById(idx));
+		mv.addObject("mainpage", "phonebook/view.jsp");
+		mv.setViewName("index");
+		return mv;
+	}
+	
+	@RequestMapping("phonebook/update")
+	public ModelAndView pbUpdate(ModelAndView mv) {
+		
 		return mv;
 	}
 }

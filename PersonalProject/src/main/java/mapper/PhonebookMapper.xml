@@ -9,5 +9,5 @@
 	</update>
 	<delete id="deleteById">delete phonebook where idx=#{idx}</delete>
 	<select id="totalCount">select count(*) from phonebook</select>
-	<select id="rowSelect" resultType="vo.PhonebookVO">select * from phonebook</select>
+	<select id="rowSelect" resultType="vo.PhonebookVO" parameterType="map">select * from phonebook_rownum where r between #{currentPage} and #{currentPage}+#{countPerPage}</select>
 </mapper>
