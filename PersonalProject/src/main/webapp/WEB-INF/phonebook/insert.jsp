@@ -1,28 +1,9 @@
-<%@ page import="java.sql.*"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%
-
-%>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>전화번호 입력</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
-</head>
-<body>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<form class="was-validated" method="POST">
 	<div class="container mt-3">
 		<button type="button" class="btn btn-success"
-			onclick="location.href='list.jsp'">홈</button>
+			onclick="location.href='/phonebook/pagelist'">홈</button>
 		<h2>전화번호입력</h2>
-		<form action="insertProc.jsp" class="was-validated">
 			<div class="mb-3 mt-3">
 				<label for="name">이름:</label> <input type="text"
 					class="form-control" id="name" placeholder="Enter name" name="name" required>
@@ -53,9 +34,49 @@
 					class="form-control" id="memo" placeholder="Enter memo" name="memo">
 			</div>
 
-			<button type="submit" class="btn btn-primary">전화번호입력</button>
-		</form>
+			<input type="button" class="btn btn-primary" onclick="pbupdateProc()" value="전화번호 입력">
 	</div>
-
-</body>
-</html>
+</form>
+<script>
+function pbupdateProc() {
+	var name = document.getElementById("name").value;
+	var hp = document.getElementById("hp").value;
+	var company = document.getElementById("company").value;
+	var email = document.getElementById("email").value;
+	var address = document.getElementById("address").value;
+	var birthday = document.getElementById("birthday").value;
+	var memo = document.getElementById("memo").value;
+	
+	if(name==null || hp==null || name=="" || hp=="") {
+		alert("이름과 전화번호는 필수로 입력해야 합니다.");
+		return;
+	}
+	
+	fetch("insertProc",{
+		method: "POST",
+		headers: {
+			"Content-Type":"application/json",
+			"Accept" : "application/json"
+			},
+		body: JSON.stringify({
+			"name":name,
+			"hp":hp,
+			"company":company,
+			"email":email,
+			"address":address,
+			"birthday":birthday,
+			"memo":memo
+		})
+	})
+	.then(response => {return response.text();})
+	.then(result => {
+		if(result==1) {
+			alert("전화번호가 저장되었습니다.");
+			location.href="/phonebook/pagelist";
+		}else {
+			alert("오류가 발생했습니다.");
+		}
+	});
+	
+}
+</script>

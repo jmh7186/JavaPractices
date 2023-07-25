@@ -9,15 +9,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 
 import service.MemberService;
 import service.PhonebookService;
 import vo.MemberVO;
+import vo.PhonebookVO;
 
 @Controller
 public class FrontController {
@@ -160,9 +166,35 @@ public class FrontController {
 		return mv;
 	}
 	
-	@RequestMapping("phonebook/update")
-	public ModelAndView pbUpdate(ModelAndView mv) {
-		
+	@PutMapping("phonebook/update")
+	@ResponseBody
+	public int pbUpdate(@RequestBody PhonebookVO p) {
+		return pbservice.updateById(p);
+	}
+	
+	@RequestMapping("/phonebook/insert")
+	public ModelAndView pbInsert(ModelAndView mv) {
+		mv.addObject("mainpage", "phonebook/insert.jsp");
+		mv.setViewName("index");
+		return mv;
+	}
+	
+	@PostMapping("phonebook/insertProc")
+	@ResponseBody
+	public int pbInsertProc(@RequestBody PhonebookVO p) {
+		return pbservice.insert(p);
+	}
+	
+	@DeleteMapping("phonebook/delete")
+	@ResponseBody
+	public int pbDelete(@RequestBody String idx) {
+		return pbservice.deleteById(idx);
+	}
+	
+	@RequestMapping("chat")
+	public ModelAndView pbInsertProc(ModelAndView mv) {
+		mv.addObject("mainpage", "chat/chat.jsp");
+		mv.setViewName("index");
 		return mv;
 	}
 }

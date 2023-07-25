@@ -50,4 +50,11 @@ public class PhonebookService {
 		return mapper.deleteById(idx);
 	}
 
+	public int updateById(PhonebookVO p) {
+		return mapper.updateById(p);
+	}
+
+	public int insert(PhonebookVO p) {
+		return mapper.insert(p);
+	}
 }

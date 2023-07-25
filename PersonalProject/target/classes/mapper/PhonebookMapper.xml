@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="mapper.PhonebookMapper">
-	<insert id="insert">insert into phonebook values(#{idx},#{name},#{hp},#{company})</insert>
+	<insert id="insert">
+		insert into phonebook values
+			(phonebook_idx_seq.nextval,
+			#{name}, #{hp}, #{company, jdbcType=VARCHAR}, #{email, jdbcType=VARCHAR}, #{address, jdbcType=VARCHAR},
+			#{birthday, jdbcType=DATE}, #{memo, jdbcType=VARCHAR})
+	</insert>
 	<select id="findAll" resultType="vo.PhonebookVO">select * from phonebook</select>
 	<select id="findById" resultType="vo.PhonebookVO">select * from phonebook where idx=#{idx}</select>
 	<update id="updateById">
-		update phonebook set name=#{name}, hp=#{hp}, company=#{company}, email=#{email}, address=#{address}, birthday=#{birthday}, memo=#{memo} where idx=#{idx}
+		update phonebook set name=#{name}, hp=#{hp}, company=#{company, jdbcType=VARCHAR},
+			email=#{email, jdbcType=VARCHAR}, address=#{address, jdbcType=VARCHAR}, birthday=#{birthday, jdbcType=DATE},
+			memo=#{memo, jdbcType=VARCHAR} where idx=#{idx}
 	</update>
 	<delete id="deleteById">delete phonebook where idx=#{idx}</delete>
 	<select id="totalCount">select count(*) from phonebook</select>
-	<select id="rowSelect" resultType="vo.PhonebookVO" parameterType="map">select * from phonebook_rownum where r between #{currentPage} and #{currentPage}+#{countPerPage}</select>
+	<select id="rowSelect" resultType="vo.PhonebookVO" parameterType="map">
+	<![CDATA[
+		select * from phonebook_rownum where r<=#{currentPage}*#{countPerPage} and r>=#{currentPage}*#{countPerPage}-9
+	]]>
+	</select>
 </mapper>

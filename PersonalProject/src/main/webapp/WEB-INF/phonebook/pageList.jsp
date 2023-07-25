@@ -60,20 +60,20 @@
 			<div class="container mt-3">
 				<ul class="pagination">
 					<c:if test="${pblist.currentPage>=10}">
-						<li class="page-item"><a class="page-link" href="/phonebook/pagelist?page=${pblist.startPage-1}">Previous</a></li>
+						<li class="page-item"><a class="page-link" href="/phonebook/pagelist/${pblist.startPage-1}">Previous</a></li>
 					</c:if>
 					<c:forEach var="i" begin="${pblist.startPage}" end="${pblist.endPage}" step="1">
 						<c:choose>
 						<c:when test="${pblist.currentPage==i}">
-							<li class="page-item active"><a class="page-link" href="/phonebook/pagelist?page=${i}">${i}</a></li>
+							<li class="page-item active"><a class="page-link" href="/phonebook/pagelist/${i}">${i}</a></li>
 						</c:when>
 						<c:otherwise>
-							<li class="page-item"><a class="page-link" href="/phonebook/pagelist?page=${i}">${i}</a></li>
+							<li class="page-item"><a class="page-link" href="/phonebook/pagelist/${i}">${i}</a></li>
 						</c:otherwise>
 						</c:choose>
 					</c:forEach>
 					<c:if test="${pblist.endPage!=pblist.totalPage}">
-						<li class="page-item"><a class="page-link" href="/phonebook/pagelist?page=${pblist.endPage+1}">Next</a></li>
+						<li class="page-item"><a class="page-link" href="/phonebook/pagelist/${pblist.endPage+1}">Next</a></li>
 					</c:if>
 				</ul>
 			</div>

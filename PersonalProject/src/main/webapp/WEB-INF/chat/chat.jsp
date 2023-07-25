@@ -21,10 +21,14 @@
 	}
 	ws.onmessage = function(msg) {
 		document.getElementById("chatbox").innerHTML += msg.data + '<br>';
+		console.log(msg);
 	}
 	function sendmsg() {
-		let msg = document.getElementById("chatmsg").value;
+		var msg = {
+				"id": "${sessionScope.id}",
+				"msg": document.getElementById("chatmsg").value
+		}
 		document.getElementById("chatmsg").value = "";
-		ws.send("${sessionScope.id} : "+msg);
+		ws.send(JSON.stringify(msg));
 	}
 </script>
